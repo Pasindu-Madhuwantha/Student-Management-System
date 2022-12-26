@@ -1,6 +1,15 @@
 const router = require("express").Router();
 let Student = require("../models/student");
 
+
+router.route('/').get((req, res)=>{
+    Student.find()
+    .then(students=>res.json(students))
+    .catch(err=> res.status(400).json('Error:'+err));
+});
+
+
+
 router.route("/add").post((req,res)=>{
 
     const name = req.body.name;
@@ -17,6 +26,14 @@ router.route("/add").post((req,res)=>{
     .then(()=>res.json("Student Added"))
     .catch(err=> res.status(400).json('Error:'+err));
 
-})
+});
+
+
+router.route("/update/:id").put()
+
+
+
+
+
 
 module.exports=router;
